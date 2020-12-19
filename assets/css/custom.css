@@ -1,0 +1,33 @@
+div.description > p {
+    text-align: left;
+    width: 300px;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.presentation {
+    padding-bottom: 5px;
+}
+
+h3.presentation-title {
+    display: inline;
+}
+
+div.event {
+    padding-top: 5px;
+}
+div.presentation > span.metadata {
+    height: 60px;
+    float: left;
+    width: 80px; 
+}
+
+span.metadata > span.date {
+    display: block;
+    padding-bottom: 7px;
+}
+
+span.files > a {
+    padding: 3px;
+}

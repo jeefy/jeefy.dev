@@ -1,0 +1,125 @@
++++
+author = "Jeffrey Sica"
+title = "Kubernetes at Home"
+date = "2018-01-31"
+description = "An overview of my current homelab setup using Kubernetes"
+tags = [
+    "kubernetes", "homelab", "dns"
+]
++++
+
+I like tinkering. It shows in my home setup. For a bit of background, I've had some form of media and file server on my home network since the early 2000s. In that time I've accumulated quite a number of services that I rely on, not including my own development stack. With the advent of containers, this made tinkering and management easy. I started out with a bash script to start things. Then I moved everything into a `docker-compose.yml` file.<br />
+<br />
+Over holiday break last year I realized my `docker-compose.yml` file had fifteen entries and it took effort to scroll through and add or update entries. I can do better.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<img src="https://www.stratoscale.com/wp-content/uploads/2019/04/Kubernetes-logo.png" /></div>
+Hello beautiful.<br />
+<br />
+<br />
+Here's a quick glance at the services I'm running (minus custom apps):<br />
+<br />
+<table style="width: 300px;"><colgroup><col width="*"></col><col width="*"></col><col width="*"></col></colgroup>
+<tbody>
+<tr>
+<td><div dir="ltr">
+Cacher</div>
+</td>
+<td><div dir="ltr">
+Grafana</div>
+</td>
+<td><div dir="ltr">
+Prometheus</div>
+</td>
+</tr>
+<tr>
+<td><div dir="ltr">
+Docker Registry</div>
+</td>
+<td><div dir="ltr">
+InfluxDB</div>
+</td>
+<td><div dir="ltr">
+Sabnzbd</div>
+</td>
+</tr>
+<tr>
+<td><div dir="ltr">
+Drone</div>
+</td>
+<td><div dir="ltr">
+Kibana</div>
+</td>
+<td><div dir="ltr">
+Transmission</div>
+</td>
+</tr>
+<tr>
+<td><div dir="ltr">
+Elasticsearch</div>
+</td>
+<td><div dir="ltr">
+MySQL</div>
+</td>
+<td><div dir="ltr">
+<br /></div>
+</td>
+</tr>
+<tr>
+<td><div dir="ltr">
+Emby</div>
+</td>
+<td><div dir="ltr">
+OpenHAB</div>
+</td>
+<td><div dir="ltr">
+<br /></div>
+</td>
+</tr>
+<tr>
+<td><div dir="ltr">
+Gogs</div>
+</td>
+<td><div dir="ltr">
+PiHole</div>
+</td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+<br />
+The deciding factor was PiHole. If I'm running my own DNS, I don't want me patching a single box to cause my network's DNS to go down. On top of that, I'd be able to have custom DNS entries for my home network.<br />
+<br />
+And because I have a sense of humor, it only made sense to have Gogs URL be a wonderful homage to my friends that play Dark Souls: <b>git.gud</b><br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://vignette.wikia.nocookie.net/kancolle/images/f/fb/Git_gud.jpg/revision/latest?cb=20170813115322" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="225" data-original-width="225" src="https://vignette.wikia.nocookie.net/kancolle/images/f/fb/Git_gud.jpg/revision/latest?cb=20170813115322" /></a></div>
+Take your medicine.<br />
+<br />
+Where things stand now, I have a keepalived-vip cloud provider consuming a small (/29) portion of my network. Services route through nginx-ingress, and pods are mounting NFS through persistent volumes.<br />
+<br />
+On top of all of this, the entire stack including deployment scripts are in git. Meaning to add a DNS entry and a new service, I add them to my infrastructure repo and push to master. That will kick off a drone job to update Kubernetes to the desired state. Once I have more time I'll be posting a scrubbed version of the git repo onto <a href="https://github.com/jeefy" target="_blank">Github</a>.<br />
+<br />
+And a glance at the current state of things if you run `kubectl get svc` on the `default` namespace<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-rpRQBsIYhfM/WnDLapxD0_I/AAAAAAAAHKA/ETo9exmUM04hvtMsIrCvG8VLDMCX1yaZQCLcBGAs/s1600/Screen%2BShot%2B2018-01-30%2Bat%2B2.44.46%2BPM.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="302" data-original-width="820" height="117" src="https://1.bp.blogspot.com/-rpRQBsIYhfM/WnDLapxD0_I/AAAAAAAAHKA/ETo9exmUM04hvtMsIrCvG8VLDMCX1yaZQCLcBGAs/s320/Screen%2BShot%2B2018-01-30%2Bat%2B2.44.46%2BPM.png" width="320" /></a></div>
+External IPs are managed by Keepalived<br />
+<br />
+Overkill? No. Look at my future goals:<br />
+<br />
+<ul>
+<li>Namespace things appropriately (media, development)</li>
+<li>Mixed architecture cluster (ARM + x86)</li>
+<li>Federated households</li>
+<li>Containerize Kodi (not just headless)</li>
+<li>Daemonset on Pi-nodes labeled "htpc"</li>
+</ul>
+<div>
+<br /></div>
+<div>
+While I wouldn't call this a series of posts, I want to cover why I run each of my services in the near future.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+Feel free to reach out if you have questions!</div>

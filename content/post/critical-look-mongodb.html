@@ -1,0 +1,37 @@
++++
+author = "Jeffrey Sica"
+title = "A Critical Look At MongoDB"
+date = "2018-01-04"
+description = "MongoDB gave me a bad day and I go into why."
+tags = [
+    "mongodb"
+]
++++
+
+I've been told none of this falls on me (and I agree), but I'm still left with a bad taste in my mouth.I'm torn on Mongo.<br />
+<br />
+As a developer, using Mongo makes life easier. It's literally spin up and go with a container. But after that point, after the development process, things get tricky. As a sysadmin, it causes nothing but pain and suffering. This isn't new, Mongo has had a history of stability issues, but I'm getting ahead of myself.<br />
+<br />
+Part of what I do is help run and maintain microservices on-demand for researchers. The caveat for them is that what we're running is a <b>research system</b>&nbsp;and, not only can it go down at <b>any time</b>, we do <b>not back up data</b>. Now, that's not to say we don't do our best, and we absolutely try to go the extra mile to help someone out. However in this case, we're left with an unhappy customer.<br />
+<br />
+A node that these on-demand services resides on had a hardware failure (faulty CPU) and everything on said node died hard. Recovery happened as VMs were evacuated, however the damage to the Mongo instance had been done. Three of WiredTiger's metadata files (WiredTiger.wt, WiredTiger.turtle, SizeStorer.wt) were corrupted. Mongo would try to start, WiredTiger detects an invalid file and dies. The end.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<img border="0" data-original-height="363" data-original-width="762" height="190" src="https://1.bp.blogspot.com/-LtfHoLepHqo/Wk5ARXb6CvI/AAAAAAAAHCE/-pnZqqiVsCUbnmC4_nI2kX-UQC97pBwRACLcBGAs/s400/Screen%2BShot%2B2018-01-02%2Bat%2B10.58.18%2BAM.png" width="400" /></div>
+<br />
+<br />
+Research had shown that you can actually cut a ticket with Mongo and they'll <a href="https://jira.mongodb.org/browse/SERVER-32512" target="_blank">attempt to restore your files</a>. However in our case things weren't able to be recovered (supposedly due to how our instance crashed.) I've now been left with informing said researcher that<br />
+<br />
+A) They should have run replica sets<br />
+B) They should have taken backups<br />
+C) There may be a <a href="http://www.alexbevi.com/blog/2016/02/10/recovering-a-wiredtiger-collection-from-a-corrupt-mongodb-installation/" target="_blank">way to retrieve the data</a>, but it will take forever<br />
+<br />
+I've been told none of this falls on me (and I agree), but I'm still left with a bad taste in my mouth.&nbsp;Look at other data stores (SQL and otherwise) and you don't see something that corrupts an entire instance with a hard-reboot. You don't see a community that thinks it's okay that the correct solution is "Run in a replica-set, take frequent backups." They can and should do better. Now that my sysadmin rant is done, I'm gonna go work on this side project I have that's using Mongo.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://memegenerator.net/img/instances/400x/63071073/one-does-not-simply-do-anything-with-mongodb.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="335" data-original-width="335" height="200" src="https://memegenerator.net/img/instances/400x/63071073/one-does-not-simply-do-anything-with-mongodb.jpg" width="200" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<br />
+<br />
+I'm a hypocrite.

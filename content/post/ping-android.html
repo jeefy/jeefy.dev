@@ -1,0 +1,23 @@
++++
+author = "Jeffrey Sica"
+title = "Ping on Android"
+date = "2018-01-13"
+description = "Developing an android app to monitor ping at home"
+tags = [
+    "android", "networking"
+]
++++
+
+For the last couple months I've had some network instability at home. No, that's not a euphemism. Occasionally (and most annoyingly while playing Overwatch) I'll notice dropped packets and a ping that skyrockets from a solid 20ms to 300ms at a minimum. Name the theories and I've probably speculated the same, everything from an old router to water in the line to my house. It became a ritual to pop open a terminal window and `ping google.com` just to telegraph when I'd stop playing. The idea struck me to whip up an app to run on my phone to monitor my ping rather than keep a terminal window open.<br />
+<br />
+A weekend project was born.<br />
+<br />
+I recognize the humor in creating a mobile app to monitor the problem rather than addressing the problem, but option A takes you on a journey of learning and fun. Option B winds up costing money and once I dive down that rabbit hole I'll be spending a week developing grafana dashboards to monitor everything in the house.<br />
+<br />
+I digress.<br />
+<br />
+After installing Android Studio and setting up my environment, I set to the simple task of pinging Google and parsing results. However, some quick research showed my first problem: Android / Java doesn't natively understand the concept of an ICMP packet. My mind was blown. Well, that's fine, I can still shell out and parse ping's results that way. Unfortunately, my testing showed that the default interface ping uses is your cellular data and you *can't* force it to use wlan0 without being root.<br />
+<br />
+Drat.<br />
+<br />
+So I've now gone scouring for a decent Java library to handle pinging. It's 1AM on a Saturday, I have a cat on my wrists, send help.
