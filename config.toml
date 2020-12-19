@@ -32,6 +32,7 @@ CNCF Ambassador<br />
 OSS Advocate<br />
 DMs open. Honk.
 """
+displayMode = "dark"
 profilePicture = "/images/jeefy1.png"
 keywords = ""
 favicon = "favicons/"

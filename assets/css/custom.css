@@ -4,6 +4,11 @@ div.description > p {
     padding: 15px;
     margin-left: auto;
     margin-right: auto;
+    font-size: 18px;
+}
+
+div.listing-title {
+    padding-top: 1px;
 }
 
 div.presentation {
