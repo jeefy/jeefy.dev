@@ -1,3 +1,6 @@
+p {
+    font-size: 16px;
+}
 div.description > p {
     text-align: left;
     width: 300px;
@@ -35,4 +38,43 @@ span.metadata > span.date {
 
 span.files > a {
     padding: 3px;
+}
+
+div.page-top > h3 {
+    display: none;
+}
+
+.sidebar .logo-title .title img {
+    width: 250px;
+    border-radius: 50%;
+}
+
+.sidebar .logo-title {
+    padding-top: 100px;
+}
+
+@media screen and (max-width: 960px),
+print {
+    .sidebar .logo-title .title img {
+        width: 150px;
+        border-radius: 50%;
+    }
+    .content {
+        margin-top: 270px;
+        width: 100%;
+        z-index: 2;
+        position: absolute;
+    }
+    .description {
+        display: none;
+    }
+    div.page-top > h3 {
+        padding-left: 20px;
+        float: left;
+        display: inline;
+        text-transform: uppercase;
+    }
+    div.title > h3 {
+        display: none;
+    }
 }

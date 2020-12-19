@@ -24,7 +24,7 @@ pygmentsCodefencesGuessSyntax = true
       unsafe = true
 
 [params]
-title = "Hello friend!"
+title = "Jeffrey Sica"
 author = "Jeffrey Sica"
 description = """SWE @ Red Hat<br />
 Kubernetes Contributor<br />
@@ -40,7 +40,7 @@ favicon = "favicons/"
 customCss = ["css/custom.css"]
 # example ["js/custom.js"]
 customJs = [] 
-mainSections = ["about"]
+mainSections = [""]
 images = ["images/site-feature-image.png"]
 doNotLoadAnimations = true
 # Form Spree Contact Form
@@ -68,7 +68,7 @@ url = "https://github.com/jeefy"
 [[params.socialIcons]]
 icon = "fab fa-twitch"
 title = "Twitch"
-url = "https://twitch.tv/jeefy"
+url = "https://twitch.tv/jeef111x"
 
 [[params.socialIcons]]
 icon = "fab fa-youtube"
