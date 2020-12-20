@@ -11,7 +11,7 @@ enableRobotsTXT = true
 #disqusShortname = ""
 
 # Google Analytics
-#googleAnalytics = "UA-123-45"
+googleAnalytics = "G-M67G2EBPQV"
 
 # Syntax highlighting
 pygmentsUseClasses = true
