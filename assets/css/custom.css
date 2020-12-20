@@ -24,6 +24,7 @@ h3.presentation-title {
 
 div.event {
     padding-top: 5px;
+    font-size: 1.15em;
 }
 div.presentation > span.metadata {
     height: 60px;
@@ -51,6 +52,21 @@ div.page-top > h3 {
 
 .sidebar .logo-title {
     padding-top: 100px;
+}
+
+ul.list-with-title {
+    font-size: 1.15em;
+}
+
+a:link, a:visited {
+    color: teal;
+}
+a:hover {
+    color: blue;
+}
+
+.list-with-title .listing .listing-post a {
+    color: teal;
 }
 
 @media screen and (max-width: 960px),

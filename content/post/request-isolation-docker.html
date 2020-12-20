@@ -1,0 +1,21 @@
++++
+author = "Jeffrey Sica"
+title = "HTTP Request isolation using docker"
+date = "2015-05-28"
+description = "Every request gets a container because lol why not"
+tags = [
+    "docker", "web", "containers"
+]
++++
+
+About a year ago a colleague of mine and I were talking about the implications of Docker after he returned from VMWorld. One idea discussed was having a container spin up to handle a request, then destroy itself on completion.<br />
+<br />
+There are some inherit security benefits to this in that each request is within its own garden. One of the downsides is how grossly inefficient it is. Either way it sounded like a fun project to hack at on a rainy day.<br />
+<br />
+Almost a year later the rainy day finally happened.<br />
+<br />
+<a href="https://github.com/jeefy/strobe">https://github.com/jeefy/strobe</a><br />
+<br />
+I wouldn't even call this in "alpha" stage. As a proof of concept it is a nice launching point. In the future I'm hoping to put time into expanding it's flexibility. Being able to dynamically change what container runs, and instead of per-request, handle per-session.<br />
+<br />
+Docker continues to amaze, and DockerCon 2015 should be a fantastic experience.

@@ -1,0 +1,17 @@
++++
+author = "Jeffrey Sica"
+title = "IRC Bots For AFK Productivity"
+date = "2013-03-16"
+description = "Before chatops was a thing"
+tags = [
+    "irc", "bots", "crypto"
+]
++++
+
+Recently I've been going crazy and hacking together random ideas for the Bitcoin and Litecoin community. The entire cryptocoin movement seems really awesome and is at a stage where the more services that offer / promote it, the more traction it will get. Among my creations have been a pay-for-download hosting site (<a href="https://flibbur.com/">flibbur</a>), a means to purchase LiteCoins using USD (<a href="https://coinfront.net/">CoinFront</a>) and a site that is clearly named, <a href="https://cookies4coins.net/">Cookies4Coins</a><br /><br />
+
+Both CoinFront and Cookies4Coins require manual action to process orders placed by users. The problem for me was, I don't trust my phone getting the email alerts to tell me "Hey bro, you have an action item for X" -- Enter <a href="https://github.com/jeefy/sumdumbot">sumdumbot</a>. Sumdumbot has been a love hate project I've worked on for over five years. At its core it is one of the most basic IRC bots ever. It logs all links posted in the channel and you can go back and see who posted what when. It also does weather, has a random recipe generator, and can be the biggest pain in my ass<br /><br />
+
+Considering both Bob and myself spend more time in IRC than we do physically talking it only made sense to have sumdumbot alert the channel of our friends when something needed doing. It seemed like a neat novel approach to making sure things got done knowing who we are.<br /><br />
+
+It dawned on me how far sumdumbot has come along though, when I realized all I'd have to do is have the store front code just send a JSON request to sumdumbot's webserver. An hour later and some elbow grease, Cookies4Coins and CoinFront orders now have sumdumbot alert me in IRC.<br /><br />
