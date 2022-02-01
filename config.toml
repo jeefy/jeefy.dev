@@ -106,3 +106,9 @@ url = "mailto:me@jeefy.dev"
   weight = 300
   identifier = "presentations"
   url = "/presentation/"
+
+  [[menu.main]]
+  name = "Projects"
+  weight = 300
+  identifier = "projects"
+  url = "/project/"
