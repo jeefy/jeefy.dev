@@ -1,21 +1,19 @@
 {{ define "main" }}
     <div>
-        <ul class="list-with-title">
+        <ul class="list">
         {{ range .Pages }}
-            <ul class="presentation-list">
-                <div class="presentation">
-                    <span class="metadata">
-                        <i class="fab fa-github fa-2x" aria-hidden="true"></i>
-                    </span>
-                    <div class="info">
-                        <h3 class="presentation-title">
-                            {{ if ne .Params.Title_link "" }}<a href="{{ .Params.Title_link }}">{{end}}
-                            {{ .Title }}
-                            {{ if ne .Params.Title_link "" }}</a>{{end}}
-                        </h3>
-                    </div>
+            <ul class="archive__list">
+                <li class="archive__list-item">
+                    <li class="archive__list-title">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                        {{ if ne .Params.Title_link "" }}<a href="{{ .Params.Title_link }}">{{end}}
+                        {{ .Title }}
+                        {{ if ne .Params.Title_link "" }}</a>{{end}}
+                    </li>
+                </li>
+                <li class="archive__list-title">
                     {{ .Params.Description }}
-                </div>
+                </li>
             </ul>
             {{ end }}
         </ul>

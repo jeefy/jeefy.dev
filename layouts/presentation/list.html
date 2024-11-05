@@ -2,36 +2,32 @@
     <div>
         <ul class="list-with-title">
             {{ range .Data.Pages.GroupByDate "2006" }}
-                <div class="listing-title">{{ .Key }}</div>
+                <div class="archive__heading">{{ .Key }}</div>
                 {{ range .Pages }}
-                    <ul class="presentation-list">
-                        <div class="presentation">
-                            <span class="metadata">
-                                <span class="date">{{.Date.Format "Jan 2" }}</span>
-                                <span class="files">
-                                    {{ if ne .Params.Slides "" }}
-                                    <a target="_blank" href="{{ .Params.Slides }}">
-                                        <i class="fas fa-file-powerpoint"></i>
-                                    </a>
-                                    {{ end }}
-                                    {{ if ne .Params.Video "" }}
-                                    <a target="_blank" href="{{ .Params.Video }}">
-                                        <i class="fas fa-video"></i>
-                                    </a>
-                                    {{ end }}
-                                </span>
+                    <ul class="archive__list">
+                        <li class="archive__list-item">
+                            <span class="files">
+                                {{ if ne .Params.Slides "" }}
+                                <a target="_blank" href="{{ .Params.Slides }}">
+                                    <i class="fas fa-file-powerpoint"></i>
+                                </a>
+                                {{ end }}
+                                {{ if ne .Params.Video "" }}
+                                <a target="_blank" href="{{ .Params.Video }}">
+                                    <i class="fas fa-video"></i>
+                                </a>
+                                {{ end }}
                             </span>
-                            <div class="info">
-                                <h3 class="presentation-title">
-                                    {{ if ne .Params.Title_link "" }}<a href="{{ .Params.Title_link }}">{{end}}
-                                    {{ .Title }}
-                                    {{ if ne .Params.Title_link "" }}</a>{{end}}
-                                </h3>
-                                <div class="event">
-                                    {{ .Params.Event }}
-                                </div>
+                            {{ if ne .Params.Title_link "" }}<a class="archive__list-title" href="{{ .Params.Title_link }}">{{end}}
+                                <span class="archive__list-title">{{ .Title }}</span>
+                            {{ if ne .Params.Title_link "" }}</a>{{end}}
+                            <div class="archive__list-date">
+                                {{.Date.Format "Jan 2" }}<br />
                             </div>
-                        </div>
+                        </li>
+                        <li class="archive__list-subheader">
+                            {{ .Params.Event }}
+                        </li>
                     </ul>
                 {{ end }}
             {{ end }}

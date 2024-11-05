@@ -4,19 +4,19 @@ serve:
 	docker run --rm -it \
 	-v ${PWD}:/src \
 	-p 1313:1313 \
-	klakegg/hugo:0.79.0 \
+	hugomods/hugo:exts-non-root  \
 	server
 
 build:
 	docker run --rm -it \
 	-v ${PWD}:/src \
 	-p 1313:1313 \
-	klakegg/hugo:0.79.0 \
+	hugomods/hugo:exts-non-root  \
 	--gc --minify
 
 shell:
 	docker run --rm -it \
 	-v ${PWD}:/src \
 	-p 1313:1313 \
-	klakegg/hugo:0.79.0-alpine \
+	hugomods/hugo:exts-non-root  \
 	shell

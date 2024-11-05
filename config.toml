@@ -28,8 +28,8 @@ title = "Jeffrey Sica"
 author = "Jeffrey Sica"
 description = """
 Developer Experience @ CNCF
-Kubernetes Contributor<br />
-OSS Advocate<br />
+Kubernetes Contributor
+OSS Advocate
 DMs open. Honk.
 """
 displayMode = "dark"
@@ -84,6 +84,11 @@ url = "https://www.youtube.com/channel/UCF6KpKcKHIRx1WB2sP0DkhA"
 icon = "fab fa-linkedin"
 title = "Linkedin"
 url = "https://linkedin.com/in/jeefy"
+
+[[params.socialIcons]]
+icon = "fab fa-bluesky"
+title = "Bluesky"
+url = "https://bsky.app/profile/jeefy.dev"
 
 [[params.socialIcons]]
 icon = "fas fa-envelope"

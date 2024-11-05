@@ -37,6 +37,27 @@ span.metadata > span.date {
     padding-bottom: 7px;
 }
 
+ul.list-with-title {
+    margin-right: 10px;
+}
+
+li.archive__list-subheader {
+    padding-left: 75px;
+    list-style-type: none;
+}
+
+ul.archive__list {
+    border-bottom: 1px solid #555;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+
+}
+
+span.files {
+    display: block;
+    width: 60px;
+}
+
 span.files > a {
     padding: 3px;
 }
@@ -45,8 +66,9 @@ div.page-top > h3 {
     display: none;
 }
 
-.sidebar .logo-title .title img {
+img.sidebar__introduction-profileimage {
     width: 250px;
+    height: 250px;
     border-radius: 50%;
 }
 
