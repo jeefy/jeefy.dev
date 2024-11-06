@@ -18,7 +18,7 @@
                                 </a>
                                 {{ end }}
                             </span>
-                            {{ if ne .Params.Title_link "" }}<a class="archive__list-title" href="{{ .Params.Title_link }}">{{end}}
+                            {{ if ne .Params.Title_link "" }}<a target="_blank" class="archive__list-title" href="{{ .Params.Title_link }}">{{end}}
                                 <span class="archive__list-title">{{ .Title }}</span>
                             {{ if ne .Params.Title_link "" }}</a>{{end}}
                             <div class="archive__list-date">
