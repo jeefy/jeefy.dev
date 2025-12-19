@@ -1,0 +1,77 @@
++++
+author = "Jeffrey Sica"
+title = "DS3 Mods on a Flatpak-based Linux System"
+date = "2025-12-18"
+description = "Sure it's easy to install DS3 mods on Windows, but what about Linux users running Flatpak?"
+tags = [
+    "linux",
+    "flatpak",
+    "ds3",
+    "mods"
+]
++++
+
+If you try to run any Dark Souls 3 mods on a Flatpak-based Linux system, you'll quickly find pitfall after pitfall. This is because Flatpak applications are sandboxed and don't have access to the host filesystem in the same way that traditional applications do.<br />
+<br />
+Additionally, Steam / Proton create an incredibly long file path that can cause issues with Dark Souls 3 mods. After a lot of pain and trial and errors, I was finally able to do Convergence + Seamless Co-Op Dark Souls 3 on my <a href="https://projectbluefin.io">Bluefin</a> machine. Here are the steps I took to get it working:<br />
+<br />
+<b>Assumptions:</b><br />
+<ul>
+<li>You have a Flatpak-based Linux system with Steam installed via Flatpak.</li>
+<li>You have Dark Souls 3 installed via Steam.</li>
+</ul>
+
+<b>Steps to fix the "file path is too long so when I load into the game I can't move" problem:</b>
+<ol>
+    <li>Create a new Steam Library location different from the original. Make sure it's not extremely long to avoid file path length issues. I specifically used <code>/var/home/jeefy/Games</code></li>
+    <li>Close Steam.</li>
+    <li>Using Flatseal, grant Steam access to the new Steam Library location you created.</li>
+    <li>Launch Steam.</li>
+    <li>Move the Dark Souls 3 installation folder from the original Steam Library to the new one. You can do this by right-clicking on Dark Souls 3 in your Steam Library, selecting "Properties", going to the "Local Files" tab, and clicking "Move Install Folder".</li>
+</ol>
+<br />
+<b>Steps to get Convergence + Seamless Coop working:</b><br />
+<ol>
+    <li>Install <a href="https://me3.help">Mod Engine 3</a>. They even have a Linux installer. It's dope.</li>
+    <li>Download the Convergence + Seamless Coop mod files from <a href="https://www.nexusmods.com/darksouls3/mods/">Nexus Mods</a>.</li>
+    <li>Extract the mods into a <code>ds3_mods</code> folder in the ME3 profile directory. The file structure should be something like:<br />
+        <pre>
+            ds3-mods
+            ├── Convergence
+            ├── dinput8.dll
+            ├── HoodiePatcher.dll
+            ├── HoodiePatcher.ini
+            ├── modengine.ini
+            └── SeamlessCoop
+        </pre>
+    </li>
+    <li>Edit the profile <code>ds3-default.me3</code> to look like this:<br />
+        <pre>
+            profileVersion = "v1"
+            start_online = false
+            debug = false
+
+            [[supports]]
+            game = "ds3"
+
+            [[package]]
+            id = "default-mods"
+            path = "ds3-mods"
+
+            [[natives]]
+            path = "ds3-mods/SeamlessCoop/ds3sc.dll"
+
+            [[package]]
+            id = "convergence"
+            path = "ds3-mods/Convergence"
+        </pre>
+    </li>
+    <li>Update the Seamless Coop Config as-needed (password, difficulty, etc)</li>
+    <li>In Steam, add a non-steam game. Name it <code>DARK SOULS 3 -- Mod Engine</code>. Point it to the Mod Engine 3 script <code>launch-darksouls3-mods.sh</code> in the same directory as your profile.</li>
+    <li>THIS MAY BE UNNECESSARY BUT (this works for me): Change your Launch Options in the Mod Engine Steam entry to be: <code>PROTON_SET_GAME_DRIVE=1 %command%</code></li>
+    <li>Launch Dark Souls 3 via the Mod Engine Steam entry you just created.</li>
+</ol><br />
+<br />
+This is how I got all it all working. I figure there's maybe ten people who will run into this and hopefully it'll help one of you lol. <br />
+<br />
+Good luck and git gud.
