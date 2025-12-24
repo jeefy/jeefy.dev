@@ -18,7 +18,7 @@ Additionally, Steam / Proton create an incredibly long file path that can cause 
 <b>Assumptions:</b><br />
 <ul>
 <li>You have a Flatpak-based Linux system with Steam installed via Flatpak.</li>
-<li>You have Dark Souls 3 installed via Steam.</li>
+<li>You have Dark Souls 3 installed via Steam and have run it successfully at least once.</li>
 </ul>
 
 <b>Steps to fix the "file path is too long so when I load into the game I can't move" problem:</b>
@@ -36,39 +36,54 @@ Additionally, Steam / Proton create an incredibly long file path that can cause 
     <li>Download the Convergence + Seamless Coop mod files from <a href="https://www.nexusmods.com/darksouls3/mods/">Nexus Mods</a>.</li>
     <li>Extract the mods into a <code>ds3_mods</code> folder in the ME3 profile directory. The file structure should be something like:<br />
         <pre>
-            ds3-mods
-            ├── Convergence
-            ├── dinput8.dll
-            ├── HoodiePatcher.dll
-            ├── HoodiePatcher.ini
-            ├── modengine.ini
-            └── SeamlessCoop
-        </pre>
+    ds3-mods
+    ├── Convergence
+    ├── dinput8.dll
+    ├── HoodiePatcher.dll
+    ├── HoodiePatcher.ini
+    ├── modengine.ini
+    └── SeamlessCoop</pre>
     </li>
-    <li>Edit the profile <code>ds3-default.me3</code> to look like this:<br />
+    <li>Create or edit the profile <code>ds3-default.me3</code> to look like this:<br />
         <pre>
-            profileVersion = "v1"
-            start_online = false
-            debug = false
+    profileVersion = "v1"
+    start_online = false
+    debug = false
 
-            [[supports]]
-            game = "ds3"
+    [[supports]]
+    game = "ds3"
 
-            [[package]]
-            id = "default-mods"
-            path = "ds3-mods"
+    [[package]]
+    id = "default-mods"
+    path = "ds3-mods"
 
-            [[natives]]
-            path = "ds3-mods/SeamlessCoop/ds3sc.dll"
+    [[natives]]
+    path = "ds3-mods/SeamlessCoop/ds3sc.dll"
 
-            [[package]]
-            id = "convergence"
-            path = "ds3-mods/Convergence"
-        </pre>
+    [[package]]
+    id = "convergence"
+    path = "ds3-mods/Convergence"</pre>
     </li>
     <li>Update the Seamless Coop Config as-needed (password, difficulty, etc)</li>
-    <li>In Steam, add a non-steam game. Name it <code>DARK SOULS 3 -- Mod Engine</code>. Point it to the Mod Engine 3 script <code>launch-darksouls3-mods.sh</code> in the same directory as your profile.</li>
-    <li>THIS MAY BE UNNECESSARY BUT (this works for me): Change your Launch Options in the Mod Engine Steam entry to be: <code>PROTON_SET_GAME_DRIVE=1 %command%</code></li>
+    <li>
+        Verify that me3 sees your new profile:
+        <pre>$ me3 profile list</pre>
+        You should see something like this:
+        <pre>
+    $ me3 profile list
+        INFO me3: version="0.9.0" commit_id="8f907dfcce295d8cda5bc84e955073cb22eb7552"
+        eldenring-default
+        nightreign-default
+        sekiro-default
+        ds3-default</pre>
+    </li>
+    <li>From here you should be able to launch the game by running the following in the terminal:
+        <pre>$ me3 launch -p ds3-default</pre>
+    </li>
+    <li>OPTIONAL: In Steam, add a non-steam game. Name it <code>DARK SOULS 3 -- Mod Engine</code>. Point it to the Mod Engine 3 binary and set the launch options to be: 
+        <pre>launch -p ds3-default</pre>
+        This should look familiar from a previous step.
+    </li>
     <li>Launch Dark Souls 3 via the Mod Engine Steam entry you just created.</li>
 </ol><br />
 <br />
